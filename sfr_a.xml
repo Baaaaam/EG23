@@ -21,30 +21,6 @@
     </config>
   </prototype>
 
-  <prototype>
-    <name>SFR_A_separations</name>
-    <config>
-      <Separations>
-        <leftover_commod>waste</leftover_commod>
-        <throughput>5e6</throughput>
-        <feedbuf_size>5e6</feedbuf_size>
-        <feed_commods> <val>SFR_A_spent_stored</val> </feed_commods>
-
-        <streams>
-          <item>
-            <commod>fast_pu</commod>
-            <info>
-              <buf_size>5e6</buf_size>
-              <efficiencies>
-                <item> <comp>Pu</comp> <eff>.99</eff> </item>
-              </efficiencies>
-            </info>
-          </item>
-        </streams>
-      </Separations>
-    </config>
-  </prototype>
-
 
   <prototype>
     <name>SFR_A</name>
@@ -76,17 +52,8 @@
         <fill_size>69492</fill_size>
 
         <fiss_commods>
-          <val>UOX_pu</val>
-          <val>fast_pu</val>
-          <!-- <val>UOX_pu_stored</val>
-           <val>fast_pu_stored</val>-->
+          <val>pu</val>
         </fiss_commods>
-        <fiss_commod_prefs>
-          <!--<val>3.0</val>
-           <val>4.0</val> -->
-          <val>1.0</val>
-          <val>2.0</val>
-        </fiss_commod_prefs>
         <fiss_size>5748</fiss_size>
 
         <throughput>75240</throughput>
@@ -120,7 +87,6 @@
     <config>
       <DeployInst>
         <prototypes>
-          <val>SFR_A_separations</val>
           <val>SFR_A_storage</val>
           <val>SFR_A_cooling</val>
         </prototypes>
@@ -128,11 +94,9 @@
         <build_times>
           <val>1</val>
           <val>1</val>
-          <val>1</val>
         </build_times>
 
         <n_build>
-          <val>1</val>
           <val>1</val>
           <val>1</val>
         </n_build>

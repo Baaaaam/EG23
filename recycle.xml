@@ -34,68 +34,70 @@
       </Enrichment>
     </config>
   </prototype>
-<!---
-<prototype>
-  <name>fast_Pu_storage</name>
-  <config>
-    <Storage>
-      <in_commods><val>fast_pu_</val></in_commods>
-      <out_commods><val>fast_pu_stored</val></out_commods>
-      <residence_time>0</residence_time>
-      <max_inv_size>1.5e4</max_inv_size>
-    </Storage>
-  </config>
-</prototype>
-
-<prototype>
-  <name>UOX_Pu_storage</name>
-  <config>
-    <Storage>
-      <in_commods><val>UOX_pu_</val></in_commods>
-      <out_commods><val>UOX_pu_stored</val></out_commods>
-      <residence_time>0</residence_time>
-      <max_inv_size>1.5e4</max_inv_size>
+  <!---
+   <prototype>
+   <name>fast_Pu_storage</name>
+   <config>
+   <Storage>
+   <in_commods><val>fast_pu_</val></in_commods>
+   <out_commods><val>fast_pu_stored</val></out_commods>
+   <residence_time>0</residence_time>
+   <max_inv_size>1.5e4</max_inv_size>
    </Storage>
-  </config>
-</prototype>
+   </config>
+   </prototype>
 
--->
+   <prototype>
+   <name>UOX_Pu_storage</name>
+   <config>
+   <Storage>
+   <in_commods><val>UOX_pu_</val></in_commods>
+   <out_commods><val>UOX_pu_stored</val></out_commods>
+   <residence_time>0</residence_time>
+   <max_inv_size>1.5e4</max_inv_size>
+   </Storage>
+   </config>
+   </prototype>
 
-
-
-
-<prototype>
-  <name>LWR_separation</name>
-  <config>
-    <Separations>
-      <leftover_commod>waste</leftover_commod>
-      <throughput>83333.3333</throughput>
-      <feedbuf_size>107537</feedbuf_size>
-      <feed_commods>
-        <val>UOX_A_spent_stored</val>
-        <val>UOX_B_spent_stored</val>
-      </feed_commods>
-      <feed_commod_prefs>
-        <val>2.0</val>
-        <val>1.0</val>
-      </feed_commod_prefs>
+   -->
 
 
-      <streams>
-        <item>
-          <commod>UOX_pu</commod>
-          <info>
-            <buf_size>1e100</buf_size>
-            <efficiencies>
-              <item> <comp>Pu</comp> <eff>.99</eff> </item>
-            </efficiencies>
-          </info>
-        </item>
-      </streams>
 
-    </Separations>
-  </config>
-</prototype>
+
+  <prototype>
+    <name>Separation</name>
+    <config>
+      <Separations>
+        <leftover_commod>waste</leftover_commod>
+        <throughput>349650</throughput>
+        <feedbuf_size>400000</feedbuf_size>
+        <feed_commods>
+          <val>UOX_A_spent_stored</val>
+          <val>UOX_B_spent_stored</val>
+          <val>SFR_A_spent_stored</val>
+          <val>SFR_B_spent_stored</val>
+        </feed_commods>
+        <feed_commod_prefs>
+          <val>4.0</val>
+          <val>3.0</val>
+          <val>2.0</val>
+          <val>1.0</val>
+        </feed_commod_prefs>
+        <streams>
+          <item>
+            <commod>pu</commod>
+            <info>
+              <buf_size>5000</buf_size>
+              <efficiencies>
+                <item> <comp>Pu</comp> <eff>.99</eff> </item>
+              </efficiencies>
+            </info>
+          </item>
+        </streams>
+
+      </Separations>
+    </config>
+  </prototype>
 
 
   <prototype>
@@ -124,24 +126,18 @@
     <config>
       <DeployInst>
         <prototypes>
-          <val>LWR_separation</val>
-          <val>LWR_separation</val>
           <val>waste</val>
           <val>enrichment</val>
           <val>depleted_src</val>
         </prototypes>
 
         <build_times>
-          <val>180</val>
-          <val>300</val>
           <val>1</val>
           <val>1</val>
           <val>1</val>
         </build_times>
 
         <n_build>
-          <val>2</val>
-          <val>1</val>
           <val>1</val>
           <val>1</val>
           <val>1</val>
@@ -163,6 +159,7 @@
   <agent> <name>deployer3</name> <prototype>deployer_supply_LWR_B</prototype> </agent>
   <agent> <name>deployer4</name> <prototype>deployer_supply_SFR_A</prototype> </agent>
   <agent> <name>deployer5</name> <prototype>deployer_supply_SFR_B</prototype> </agent>
+  <agent> <name>deployer6</name> <prototype>Sep_deployer</prototype> </agent>
 
 
   <agent> <name>init_reactor</name> <prototype>init_reactor_deployer_LWR_A</prototype> </agent>
@@ -170,30 +167,439 @@
   <agent> <name>r_deployer_SFR_A</name> <prototype>reactor_deployer_SFR_A</prototype> </agent>
   <agent> <name>r_deployer_SFR_B</name> <prototype>reactor_deployer_SFR_B</prototype> </agent>
 
-<agent> <name>f_deployer_SFR_A</name> <prototype>fabrication_deployer_SFR_A</prototype> </agent>
-<agent> <name>f_deployer_SFR_B</name> <prototype>fabrication_deployer_SFR_B</prototype> </agent>
+  <agent> <name>f_deployer_SFR_A</name> <prototype>fabrication_deployer_SFR_A</prototype> </agent>
+  <agent> <name>f_deployer_SFR_B</name> <prototype>fabrication_deployer_SFR_B</prototype> </agent>
 
+
+
+
+  <prototype>
+    <name>Sep_deployer</name>
+    <config>
+      <DeployInst>
+        <prototypes>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+          <val>Separation</val>
+
+        </prototypes>
+        <n_build>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>3</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>1</val>
+          <val>1</val>
+          <val>2</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>2</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>1</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>1</val>
+          <val>2</val>
+          <val>1</val>
+          <val>1</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>2</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>3</val>
+          <val>2</val>
+          <val>4</val>
+        </n_build>
+
+        <build_times>
+          <val>421</val>
+          <val>565</val>
+          <val>661</val>
+          <val>721</val>
+          <val>769</val>
+          <val>793</val>
+          <val>817</val>
+          <val>841</val>
+          <val>865</val>
+          <val>889</val>
+          <val>901</val>
+          <val>925</val>
+          <val>949</val>
+          <val>973</val>
+          <val>985</val>
+          <val>997</val>
+          <val>1009</val>
+          <val>1021</val>
+          <val>1045</val>
+          <val>1057</val>
+          <val>1069</val>
+          <val>1081</val>
+          <val>1093</val>
+          <val>1105</val>
+          <val>1117</val>
+          <val>1129</val>
+          <val>1141</val>
+          <val>1153</val>
+          <val>1165</val>
+          <val>1177</val>
+          <val>1189</val>
+          <val>1201</val>
+          <val>1213</val>
+          <val>1225</val>
+          <val>1237</val>
+          <val>1249</val>
+          <val>1261</val>
+          <val>1273</val>
+          <val>1285</val>
+          <val>1297</val>
+          <val>1309</val>
+          <val>1321</val>
+          <val>1333</val>
+          <val>1345</val>
+          <val>1357</val>
+          <val>1369</val>
+          <val>1381</val>
+          <val>1393</val>
+          <val>1405</val>
+          <val>1417</val>
+          <val>1429</val>
+          <val>1441</val>
+          <val>1453</val>
+          <val>1465</val>
+          <val>1477</val>
+          <val>1489</val>
+          <val>1501</val>
+          <val>1513</val>
+          <val>1525</val>
+          <val>1537</val>
+          <val>1549</val>
+          <val>1561</val>
+          <val>1573</val>
+          <val>1585</val>
+          <val>1597</val>
+          <val>1609</val>
+          <val>1621</val>
+          <val>1633</val>
+          <val>1645</val>
+          <val>1657</val>
+          <val>1669</val>
+          <val>1681</val>
+          <val>1693</val>
+          <val>1705</val>
+          <val>1717</val>
+          <val>1729</val>
+          <val>1741</val>
+          <val>1753</val>
+          <val>1765</val>
+          <val>1777</val>
+          <val>1789</val>
+          <val>1801</val>
+          <val>1813</val>
+          <val>1825</val>
+          <val>1837</val>
+          <val>1849</val>
+          <val>1861</val>
+          <val>1873</val>
+          <val>1885</val>
+          <val>1897</val>
+          <val>1909</val>
+          <val>1921</val>
+          <val>1933</val>
+          <val>1945</val>
+          <val>1957</val>
+          <val>1969</val>
+          <val>1981</val>
+          <val>1993</val>
+          <val>2005</val>
+          <val>2017</val>
+          <val>2029</val>
+          <val>2041</val>
+          <val>2053</val>
+          <val>2065</val>
+          <val>2077</val>
+          <val>2089</val>
+          <val>2101</val>
+          <val>2113</val>
+          <val>2125</val>
+          <val>2137</val>
+          <val>2149</val>
+          <val>2161</val>
+          <val>2173</val>
+          <val>2185</val>
+          <val>2197</val>
+          <val>2209</val>
+          <val>2221</val>
+          <val>2233</val>
+          <val>2245</val>
+          <val>2257</val>
+          <val>2269</val>
+          <val>2281</val>
+          <val>2293</val>
+          <val>2305</val>
+          <val>2317</val>
+          <val>2329</val>
+          <val>2341</val>
+        </build_times>
+
+       </DeployInst>
+    </config>
+  </prototype>
+  
+  
+  
+  
+  
+  
+  
+  
+  
   <recipe>
     <name>depleted_u</name>
     <basis>mass</basis>
     <nuclide> <id>U235</id><comp>0.0025</comp></nuclide>
     <nuclide><id>U238</id><comp>0.9975</comp></nuclide>
   </recipe>
-
+  
   <recipe>
     <name>natl_u</name>
     <basis>mass</basis>
     <nuclide> <id>U235</id> <comp>0.711</comp> </nuclide>
     <nuclide> <id>U238</id> <comp>99.289</comp> </nuclide>
   </recipe>
-
+  
   <recipe>
     <name>UOX</name>
     <basis>mass</basis>
     <nuclide> <id>U235</id><comp>0.042</comp></nuclide>
     <nuclide><id>U238</id><comp>0.958</comp></nuclide>
   </recipe>
-
+  
   <recipe>
     <name>UOX_spent_bak</name>
     <basis>mass</basis>
@@ -201,10 +607,10 @@
     <nuclide><id>U238</id> <comp>  0.9245</comp></nuclide>
     <nuclide><id>Pu239</id> <comp>0.0143</comp></nuclide>
     <nuclide><id>Am241</id> <comp>0.0011</comp></nuclide>
-
+    
     <nuclide> <id>Cs137</id> <comp>0.0521</comp> </nuclide>
   </recipe>
-
+  
   <recipe>
     <name>UOX_spent</name>
     <basis>mass</basis>
