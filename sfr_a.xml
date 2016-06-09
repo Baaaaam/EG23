@@ -65,11 +65,11 @@
         <fuel_incommods>  <val>SFR_fuel</val></fuel_incommods>
         <fuel_outcommods> <val>SFR_A_spent</val></fuel_outcommods>
 
-        <cycle_time>13</cycle_time>
+        <cycle_time>12</cycle_time>
         <refuel_time>0</refuel_time>
-        <assem_size>7524</assem_size>
-        <n_assem_core>5</n_assem_core>
-        <n_assem_batch>1</n_assem_batch>
+        <assem_size>1.39333333333333326e+03</assem_size>
+        <n_assem_core>27</n_assem_core>
+        <n_assem_batch>5</n_assem_batch>
         <power_cap>360</power_cap>
       </Reactor>
     </config>
