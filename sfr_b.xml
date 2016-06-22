@@ -358,11 +358,11 @@
   </prototype>
 
 
-<agent> <name>s_deployer_SFR_B</name> <prototype>deployer_supply_SFR_B</prototype> </agent>
+  <agent> <name>s_deployer_SFR_B</name> <prototype>deployer_supply_SFR_B</prototype> </agent>
 
 
-<agent> <name>r_deployer_SFR_B</name> <prototype>reactor_deployer_SFR_B</prototype> </agent>
+  <agent> <name>r_deployer_SFR_B</name> <prototype>reactor_deployer_SFR_B</prototype> </agent>
 
-<agent> <name>f_deployer_SFR_B</name> <prototype>fabrication_deployer_SFR_B</prototype> </agent>
+  <agent> <name>f_deployer_SFR_B</name> <prototype>fabrication_deployer_SFR_B</prototype> </agent>
 
 </My_include>

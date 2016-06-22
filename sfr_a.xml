@@ -699,7 +699,7 @@
           <val>1</val>
           <val>1</val>
         </n_build>
-        
+
         <build_times>
           <val>409</val>
           <val>565</val>
@@ -800,16 +800,16 @@
       </DeployInst>
     </config>
   </prototype>
-  
-  
-  
+
+
+
   <agent> <name>s_deployer_SFR_A</name> <prototype>deployer_supply_SFR_A</prototype> </agent>
   <agent> <name>r_deployer_SFR_A</name> <prototype>reactor_deployer_SFR_A</prototype> </agent>
   <agent> <name>f_deployer_SFR_A</name> <prototype>fabrication_deployer_SFR_A</prototype> </agent>
 
 
-  
-  
-  
-  
+
+
+
+
 </My_include>
