@@ -3,8 +3,6 @@ this calculation run using :
 
 - cycamore fork: https://github.com/jlittell/cycamore.git -- branch:cleanstore -- commit bc2eade822fce9f51464324b607ab4227bc7150a
 
-the Output.xlsm file have been filled using the CYCLUS2FCO tool:
-- https://github.com/Baaaaam/CYCLUS2FCO, branch: master -- commit 4ab084587538af7b2bad4bf7da05bba3b7610748
 
 the present simulation includes :
 
