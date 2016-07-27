@@ -7,6 +7,7 @@
     <startmonth>1</startmonth>
     <startyear>2000</startyear>
     <decay>never</decay>
+    <eps_rsrc>1e-5</eps_rsrc>
   </control>
 
   <archetypes>
