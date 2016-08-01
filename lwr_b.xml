@@ -16,7 +16,7 @@
       <Storage>
         <in_commods> <val>UOX_B_spent</val></in_commods>
         <out_commods> <val>UOX_B_spent_cooled</val></out_commods>
-        <residence_time>84</residence_time>
+        <residence_time>81</residence_time>
       </Storage>
     </config>
   </prototype>
